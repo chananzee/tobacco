@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>กำลังวิเคราะห์</title>
+
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      background: #0f172a;
+      color: white;
+      padding: 20px;
+    }
+
+    .box {
+      background: #1e293b;
+      padding: 20px;
+      border-radius: 20px;
+      max-width: 400px;
+      margin: auto;
+    }
+
+    img {
+      width: 100%;
+      border-radius: 15px;
+      margin-top: 10px;
+    }
+
+    .loading {
+      margin-top: 15px;
+      font-size: 18px;
+      color: #22c55e;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="box">
+  <h2>🔍 กำลังวิเคราะห์...</h2>
+
+  <img id="preview">
+
+  <div class="loading">AI กำลังตรวจสอบโรคใบไม้...</div>
+
+  <div id="result"></div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const img = localStorage.getItem("capturedImage");
+  const preview = document.getElementById("preview");
+
+  if (img) {
+    preview.src = img;
+  } else {
+    alert("ไม่พบภาพ!");
+    window.location.href = "index.html";
+    return;
+  }
+
+  // 🔥 จำลอง AI
+  setTimeout(() => {
+    const result = document.getElementById("result");
+
+    result.innerHTML = `
+      <h3>ผลลัพธ์</h3>
+      <p>🌿 โรค: ใบจุดสีน้ำตาล</p>
+      <p>📊 ความมั่นใจ: 92%</p>
+      <button onclick="goHome()">⬅ กลับหน้าหลัก</button>
+    `;
+  }, 2000);
+
+});
+
+// 🔙 กลับ
+function goHome() {
+  localStorage.removeItem("capturedImage");
+  window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>

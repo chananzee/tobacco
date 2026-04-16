@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Tobacco Web - AgriTech App</title>
+  
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="style.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="auth.js"></script>
+</head>
+
+<body onload="initPage()">
+
+  <header class="app-header">
+    <div class="brand">
+      <i class="ph-fill ph-leaf"></i>
+      Tobacco
+    </div>
+    <div class="header-actions">
+      <button onclick="logout()" style="background: #fff5f5; border: 1px solid #ffe8e8; padding: 8px 16px; border-radius: 20px; display: flex; align-items: center; gap: 6px; color: #f43f5e; font-family: 'Prompt', sans-serif; font-weight: 500; font-size: 0.9rem; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.02);">
+        <i class="ph ph-sign-out" style="font-size: 1.1rem;"></i>
+        ออกจากระบบ
+      </button>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="greeting-card">
+      <h1 id="greetingText">สวัสดีเกษตรกร 👋</h1>
+      <p>ระบบพร้อมสำหรับการวิเคราะห์โรคใบยาสูบแล้ววันนี้</p>
+    </div>
+
+    <div class="section-header">
+      <h2>ภาพรวมของคุณ</h2>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-box">
+        <i class="ph-fill ph-scan"></i>
+        <span>สแกนทั้งหมด</span>
+        <h3 id="totalScan">0</h3> 
+      </div>
+      <div class="stat-box">
+        <i class="ph-fill ph-plant"></i>
+        <span>สถานะระบบ</span>
+        <h3 style="color: var(--primary); font-size: 1.2rem; margin-top: 10px;">ออนไลน์</h3>
+      </div>
+    </div>
+
+    <div class="stat-box" style="flex-direction: row; align-items: center; justify-content: space-between; cursor: pointer;" onclick="go('guide.html')">
+      <div style="display: flex; align-items: center; gap: 15px;">
+        <div style="background: #e0f2fe; padding: 15px; border-radius: 15px; color: #0284c7;">
+          <i class="ph-fill ph-book-open-text" style="font-size: 1.8rem; color: #0284c7;"></i>
+        </div>
+        <div>
+          <h3 style="font-size: 1.1rem;">คู่มือโรคพืช</h3>
+          <span style="font-size: 0.8rem;">ศึกษาอาการและวิธีรักษา</span>
+        </div>
+      </div>
+      <i class="ph ph-caret-right" style="color: var(--text-gray);"></i>
+    </div>
+
+  </main>
+
+  <nav class="bottom-nav">
+    <div class="nav-item active" onclick="go('index.html')">
+      <i class="ph-fill ph-house"></i>
+      <span>หน้าหลัก</span>
+    </div>
+    
+    <div class="nav-item" onclick="go('history.html')">
+      <i class="ph ph-clock-counter-clockwise"></i>
+      <span>ประวัติ</span>
+    </div>
+
+    <div class="nav-fab" onclick="go('camera.html')">
+      <i class="ph ph-scan"></i>
+    </div>
+
+    <div class="nav-item" onclick="go('scan.html')">
+      <i class="ph ph-book-bookmark"></i>
+      <span>สเเกนโรค</span>
+    </div>
+
+    <div class="nav-item" onclick="go('guide.html')"> 
+      <i class="ph ph-book-open"></i>
+      <span>คู่มือ</span>
+    </div>
+  </nav>
+
+  <script src="script.js"></script>
+</body>
+</html>

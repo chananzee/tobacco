@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>สมัครสมาชิก - Tobacco Web</title>
+  
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="style.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="auth.js"></script>
+
+  <style>
+    /* 🟢 สไตล์เฉพาะหน้าสมัครสมาชิก (Register) - ธีมสีน้ำเงิน */
+    * {
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Prompt', sans-serif;
+      /* เปลี่ยนพื้นหลังเป็นไล่ระดับสีฟ้า-น้ำเงินเข้ม ดูมีมิติและเทคโนโลยีมากขึ้น */
+      background: radial-gradient(circle, #e6f7ff 0%, #a3b8c9 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .box {
+      background: white;
+      padding: 50px 40px;
+      border-radius: 20px;
+      width: 95%;
+      max-width: 420px; /* ขยายความกว้างนิดหน่อย */
+      box-shadow: 0 15px 40px rgba(0, 71, 171, 0.1); /* เงาอมน้ำเงิน */
+      text-align: center;
+      /* แถบสีน้ำเงินเข้มด้านบนกล่อง */
+      border-top: 6px solid #0047AB; 
+      position: relative; /* สำหรับปุ่ม Login มุมขวา */
+    }
+
+    /* ปุ่ม Login มุมขวาบน - ให้แตกต่างชัดเจน */
+    .login-top-btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      padding: 6px 12px;
+      background: #00E6FF; /* สีฟ้าสว่าง ตัดกับธีมหลัก */
+      color: #00204A;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .login-top-btn:hover {
+      background: #00BFFF;
+    }
+
+    .icon-section {
+      display: inline-block;
+      margin-top: 10px;
+      margin-bottom: 25px;
+    }
+
+   /* รูปสัญลักษณ์เฉพาะตัว: คน+ใบไม้ */
+    .register-icon {
+      font-size: 3rem;
+      background: linear-gradient(135deg, #007BFF, #00D2FF);
+      -webkit-background-clip: text;
+      background-clip: text; /* 🟢 เพิ่มคำสั่งมาตรฐานกลางเข้าไป */
+      -webkit-text-fill-color: transparent;
+      color: transparent; /* 🟢 เพิ่ม fallback ให้สีโปร่งใส */
+      margin-bottom: 5px;
+      display: inline-block; /* 🟢 เพิ่มเพื่อให้ Gradient แสดงผลกับไอคอนได้สมบูรณ์ */
+    }
+
+    h2 {
+      margin: 0 0 5px 0;
+      color: #00204A; /* น้ำเงินเข้ม */
+      font-size: 1.6rem;
+    }
+
+    .subtitle {
+      color: #6F819F; /* Slate Blue */
+      font-size: 0.95rem;
+      margin: 0 0 30px 0;
+    }
+
+    input {
+      width: 100%;
+      margin-bottom: 18px;
+      padding: 15px;
+      border: 1px solid #C2E0FB;
+      border-radius: 12px;
+      font-family: 'Prompt', sans-serif;
+      font-size: 1rem;
+      outline: none;
+      transition: all 0.3s ease;
+      background: #EBF8FF; /* พื้นหลังช่องกรอกสีฟ้าอ่อน */
+    }
+
+    input:focus {
+      border-color: #00BFFF; /* สีฟ้าสว่างตอนคลิก */
+      background: white;
+      box-shadow: 0 0 0 4px rgba(0, 191, 255, 0.15);
+    }
+
+    button.register-btn {
+      width: 100%;
+      padding: 16px;
+      /* สีปุ่มไล่ระดับน้ำเงิน-ฟ้าสว่าง โดดเด่น */
+      background: linear-gradient(135deg, #0047AB, #87CEEB);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-family: 'Prompt', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin-top: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+
+    button.register-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 71, 171, 0.25);
+    }
+
+  </style>
+</head>
+
+<body>
+
+<div class="box">
+  <a href="login.html" class="login-top-btn">เข้าสู่ระบบ</a>
+
+  <div class="header-text">
+    <div class="icon-section">
+      <i class="ph-bold ph-user-plus register-icon"></i>
+      <i class="ph-bold ph-leaf register-icon" style="font-size: 2rem; margin-left: -10px; position: relative; top: -10px;"></i>
+    </div>
+    <h2>สมัครสมาชิก</h2>
+    <p class="subtitle">สร้างบัญชีเกษตรกรดิจิทัลของคุณ</p>
+  </div>
+
+  <input type="email" id="email" placeholder="อีเมล (Email)">
+  <input type="password" id="password" placeholder="รหัสผ่าน (Password)">
+
+  <button onclick="register()" class="register-btn">
+    เริ่มดูแลไร่ของคุณ <i class="ph-bold ph-plant"></i>
+  </button>
+
+</div>
+
+</body>
+</html>

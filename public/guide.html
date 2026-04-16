@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>คู่มือโรคพืช - Tobacco Web</title>
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="auth.js"></script>
+</head>
+<body>
+
+  <header class="app-header">
+    <div class="brand"><i class="ph-fill ph-leaf"></i>Tobacco</div>
+    <div class="header-actions">
+      <button onclick="logout()" style="background: #fff5f5; border: 1px solid #ffe8e8; padding: 8px 16px; border-radius: 20px; display: flex; align-items: center; gap: 6px; color: #f43f5e; font-family: 'Prompt', sans-serif; font-weight: 500; font-size: 0.9rem; cursor: pointer;">
+        <i class="ph ph-sign-out" style="font-size: 1.1rem;"></i> ออกจากระบบ
+      </button>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="greeting-card" style="background: linear-gradient(135deg, var(--primary), var(--primary-dark)); margin-bottom: 20px;">
+      <h1>คู่มือโรคใบยาสูบ 📖</h1>
+      <p>ข้อมูลอาการ สาเหตุ และแนวทางการรักษา</p>
+    </div>
+
+    <div class="guide-grid" style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 30px;">
+      
+      <div style="background: white; border-radius: 20px; padding: 20px; box-shadow: var(--shadow); border-left: 5px solid #10b981;">
+        <h3 style="margin-top:0; color:#10b981;">🌿 ใบปกติ (Healthy)</h3>
+        <ul style="padding-left: 20px; color: var(--text-gray); font-size: 0.9rem; margin-bottom: 0;">
+          <li>ใบสีเขียวสด ไม่มีจุดหรือรอยผิดปกติ</li>
+          <li>โครงสร้างใบสมบูรณ์ ไม่เหี่ยวเฉา</li>
+        </ul>
+      </div>
+
+      <div style="background: white; border-radius: 20px; padding: 20px; box-shadow: var(--shadow); border-left: 5px solid #f59e0b;">
+        <h3 style="margin-top:0; color:#d97706;">🍂 โรคใบจุด (Brown Spot)</h3>
+        <ul style="padding-left: 20px; color: var(--text-gray); font-size: 0.9rem;">
+          <li>มีจุดสีน้ำตาลบนใบ อาจลามเป็นวงกว้าง</li>
+          <li>ใบแห้งและร่วงเร็วกว่าปกติ</li>
+        </ul>
+        <div style="background: #fef3c7; padding: 10px 15px; border-radius: 10px; font-size: 0.85rem; color: #b45309; display: flex; gap: 8px;">
+          <i class="ph-fill ph-pill"></i> ตัดใบที่เป็นโรคไปเผาทำลาย ปรับให้แปลงโปร่งอากาศถ่ายเท
+        </div>
+      </div>
+
+      <div style="background: white; border-radius: 20px; padding: 20px; box-shadow: var(--shadow); border-left: 5px solid #ef4444;">
+        <h3 style="margin-top:0; color:#b91c1c;">🦠 ไวรัสโมเสค (Mosaic Virus)</h3>
+        <ul style="padding-left: 20px; color: var(--text-gray); font-size: 0.9rem;">
+          <li>ใบมีลายด่างสีเขียวอ่อนสลับเหลือง</li>
+          <li>ใบมักจะหงิกงอ ย่น และการเจริญเติบโตชะงัก</li>
+        </ul>
+        <div style="background: #fee2e2; padding: 10px 15px; border-radius: 10px; font-size: 0.85rem; color: #b91c1c; display: flex; gap: 8px;">
+          <i class="ph-fill ph-pill"></i> ถอนต้นที่ติดเชื้อเผาทำลายทันที และควบคุมแมลงพาหะ
+        </div>
+      </div>
+
+      <div style="background: white; border-radius: 20px; padding: 20px; box-shadow: var(--shadow); border-left: 5px solid #8b5cf6;">
+        <h3 style="margin-top:0; color:#7c3aed;">🥀 โรคใบเหี่ยว (Wilt Disease)</h3>
+        <ul style="padding-left: 20px; color: var(--text-gray); font-size: 0.9rem;">
+          <li>ใบแสดงอาการเหี่ยวลู่ลงอย่างรวดเร็วคล้ายขาดน้ำ</li>
+          <li>อาจพบโคนต้นเน่า หรือเส้นใยเชื้อราที่รากและโคนต้น</li>
+        </ul>
+        <div style="background: #ede9fe; padding: 10px 15px; border-radius: 10px; font-size: 0.85rem; color: #6d28d9; display: flex; gap: 8px;">
+          <i class="ph-fill ph-pill"></i> ถอนต้นป่วยทิ้ง หลีกเลี่ยงความชื้นในดินสูง และพักแปลงปลูก
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <nav class="bottom-nav">
+    <div class="nav-item" onclick="go('index.html')">
+      <i class="ph ph-house"></i>
+      <span>หน้าหลัก</span>
+    </div>
+    
+    <div class="nav-item" onclick="go('history.html')">
+      <i class="ph ph-clock-counter-clockwise"></i>
+      <span>ประวัติ</span>
+    </div>
+
+    <div class="nav-fab" onclick="go('camera.html')">
+      <i class="ph ph-scan"></i>
+    </div>
+
+    <div class="nav-item" onclick="go('scan.html')">
+      <i class="ph ph-book-bookmark"></i>
+      <span>สเเกนโรค</span>
+    </div>
+
+    <div class="nav-item active" onclick="go('guide.html')"> 
+      <i class="ph-fill ph-book-open"></i>
+      <span>คู่มือ</span>
+    </div>
+  </nav>
+
+  <script src="script.js"></script>
+</body>
+</html>

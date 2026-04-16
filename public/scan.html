@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>สแกนโรค - Tobacco Web</title>
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body onload="initPage()">
+
+  <header class="app-header">
+    <div class="brand"><i class="ph-fill ph-leaf"></i>Tobacco</div>
+    <div class="header-actions">
+      <button onclick="logout()" style="background: #fff5f5; border: 1px solid #ffe8e8; padding: 8px 16px; border-radius: 20px; display: flex; align-items: center; gap: 6px; color: #f43f5e; font-family: 'Prompt', sans-serif; font-weight: 500; font-size: 0.9rem; cursor: pointer;">
+        <i class="ph ph-sign-out" style="font-size: 1.1rem;"></i> ออกจากระบบ
+      </button>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="section-header" style="margin-top: 10px;">
+      <h2>ระบบตรวจวินิจฉัยด้วย AI</h2>
+    </div>
+
+    <div class="scan-container" style="background: white; border-radius: 24px; padding: 30px 20px; box-shadow: var(--shadow); text-align: center;">
+      <div class="upload-box" onclick="openFile()" style="border: 2px dashed #93c5fd; padding: 40px 20px; border-radius: 20px; cursor: pointer; background: #eff6ff; margin-bottom: 20px;">
+        <i class="ph-fill ph-image" style="font-size: 3rem; color: var(--primary);"></i>
+        <h3 style="margin: 10px 0 5px 0; color: var(--primary-dark);">อัปโหลดภาพถ่าย</h3>
+        <p style="color: var(--text-gray); font-size: 0.85rem;">แตะที่นี่เพื่อเลือกรูปจากอัลบั้ม</p>
+      </div>
+
+      <div style="color: var(--text-gray); margin-bottom: 20px; font-size: 0.9rem;">หรือ</div>
+
+      <button onclick="go('camera.html')" style="width: 100%; padding: 15px; background: var(--primary); color: white; border: none; border-radius: 15px; font-size: 1rem; font-family: 'Prompt'; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 10px; cursor: pointer; box-shadow: 0 4px 15px rgba(59,130,246,0.3);">
+        <i class="ph-fill ph-camera" style="font-size: 1.3rem;"></i> ถ่ายภาพใบยาสูบ
+      </button>
+
+      <div class="result-box" id="resultBox" style="margin-top: 30px;">
+        <div class="placeholder" style="color: #94a3b8;">
+          <i class="ph ph-sparkle" style="font-size: 2rem;"></i>
+          <p>รอการวิเคราะห์รูปภาพ...</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <input type="file" id="fileInput" hidden onchange="handleFile(event)" accept="image/*">
+
+<nav class="bottom-nav">
+    <div class="nav-item" onclick="go('index.html')">
+      <i class="ph ph-house"></i>
+      <span>หน้าหลัก</span>
+    </div>
+    
+    <div class="nav-item" onclick="go('history.html')">
+      <i class="ph ph-clock-counter-clockwise"></i>
+      <span>ประวัติ</span>
+    </div>
+
+    <div class="nav-fab" onclick="go('camera.html')">
+      <i class="ph ph-scan"></i>
+    </div>
+
+    <div class="nav-item active" onclick="go('scan.html')">
+      <i class="ph-fill ph-book-bookmark"></i>
+      <span>สเเกนโรค</span>
+    </div>
+
+    <div class="nav-item" onclick="go('guide.html')"> 
+      <i class="ph ph-book-open"></i>
+      <span>คู่มือ</span>
+    </div>
+  </nav>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script>
+    const supabaseUrl = 'https://bdzquuqxtmrrmgdtwdjq.supabase.co';
+    const supabaseKey = 'sb_publishable_mqlTN61NRe9P67p33ES6ag_7yKtEXpx';
+    const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>

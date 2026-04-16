@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>เปิดกล้อง - tobacco Web</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: #0f172a;
+      color: white;
+      text-align: center;
+    }
+
+    video {
+      width: 100%;
+      max-height: 70vh;
+      object-fit: cover;
+      border-radius: 20px;
+      margin-top: 20px;
+    }
+
+    canvas {
+      display: none;
+    }
+
+    .controls {
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 10px;
+      margin: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .capture {
+      background: #22c55e;
+      color: white;
+    }
+
+    .back {
+      background: #ef4444;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+
+<h2>📷 เปิดกล้องสแกนโรค</h2>
+
+<video id="video" autoplay playsinline></video>
+<canvas id="canvas"></canvas>
+
+<div class="controls">
+  <button class="capture" onclick="capture()">📸 ถ่ายภาพ</button>
+  <button class="back" onclick="goBack()">⬅ กลับ</button>
+</div>
+
+<script>
+const video = document.getElementById("video");
+
+// 🔥 เปิดกล้อง (บังคับเปิดกล้องหลัง ถ้ามี)
+navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
+  .then(stream => {
+    video.srcObject = stream;
+  })
+  .catch(err => {
+    alert("ไม่สามารถเปิดกล้องได้: " + err);
+  });
+
+// 📸 ถ่ายภาพ
+function capture() {
+  const canvas = document.getElementById("canvas");
+  const ctx = canvas.getContext("2d");
+
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+
+  ctx.drawImage(video, 0, 0);
+    
+  // แปลงเป็นรูป Base64
+  const imageData = canvas.toDataURL("image/png");
+
+  // 🔥 เก็บภาพไว้ในเครื่องชั่วคราว
+  localStorage.setItem("capturedImage", imageData);
+
+  // ปิดกล้อง
+  video.srcObject.getTracks().forEach(track => track.stop());
+
+  // กลับไปหน้า scan.html เพื่อแสดงผลและให้ AI ทำนาย
+  window.location.href = "scan.html";
+}
+
+// 🔙 กลับ (ถ้าไม่อยากถ่ายแล้ว)
+function goBack() {
+  if (video.srcObject) {
+    video.srcObject.getTracks().forEach(track => track.stop());
+  }
+  window.location.href = "scan.html";
+}
+</script>
+
+</body>
+</html>

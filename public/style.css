@@ -1,0 +1,179 @@
+/* นำเข้าฟอนต์และไอคอน */
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg-color: #f0f9ff; /* สีพื้นหลังฟ้าอ่อนๆ สบายตา */
+  --primary: #3b82f6; /* สีน้ำเงินหลัก */
+  --primary-dark: #2563eb; /* สีน้ำเงินเข้ม (เวลา hover) */
+  --text-dark: #1e293b;
+  --text-gray: #64748b;
+  --white: #ffffff;
+  --shadow: 0 4px 20px rgba(59, 130, 246, 0.08); /* เงาสีน้ำเงินอ่อน */
+  --radius: 24px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Prompt', sans-serif;
+  -webkit-tap-highlight-color: transparent; /* ปิดไฮไลท์เวลากดบนมือถือ */
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-dark);
+  padding-bottom: 90px; /* เว้นที่ให้เมนูด้านล่าง */
+}
+
+/* --- Header ด้านบน --- */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  background: var(--bg-color);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.brand {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brand i { color: var(--primary); font-size: 1.8rem; }
+
+.header-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-icon {
+  background: var(--white);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: var(--shadow);
+  color: var(--text-gray);
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+/* --- Content Layout --- */
+.container {
+  padding: 0 24px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* --- Greeting Card --- */
+.greeting-card {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: var(--white);
+  padding: 30px 24px;
+  border-radius: var(--radius);
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+  margin-bottom: 24px;
+}
+
+.greeting-card h1 { font-size: 1.8rem; margin-bottom: 8px; }
+.greeting-card p { opacity: 0.9; font-size: 0.95rem; }
+
+/* --- Stats Grid --- */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.stat-box {
+  background: var(--white);
+  padding: 20px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.stat-box i { font-size: 1.5rem; color: var(--primary); }
+.stat-box span { color: var(--text-gray); font-size: 0.85rem; }
+.stat-box h3 { font-size: 1.8rem; color: var(--text-dark); }
+
+/* --- Section Title --- */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.section-header h2 { font-size: 1.2rem; }
+.section-header a { color: var(--primary); text-decoration: none; font-size: 0.9rem; font-weight: 500;}
+
+/* --- Bottom Navigation (สไตล์แอปมือถือ) --- */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: var(--white);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 0;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.05);
+  border-radius: 30px 30px 0 0;
+  z-index: 100;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #9ca3af;
+  text-decoration: none;
+  font-size: 0.75rem;
+  gap: 4px;
+  cursor: pointer;
+  transition: 0.3s;
+  padding: 10px;
+  width: 20%;
+}
+
+.nav-item i { font-size: 1.5rem; }
+
+.nav-item.active { color: var(--primary); font-weight: 600; }
+
+/* ปุ่มตรงกลาง (ปุ่มสแกนแบบลอย) */
+.nav-fab {
+  width: 60px;
+  height: 60px;
+  background: var(--primary);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 2rem;
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
+  transform: translateY(-20px);
+  border: 4px solid var(--bg-color);
+  cursor: pointer;
+}
+
+.nav-item.active {
+  color: #1482dd;
+  font-weight: bold;
+}

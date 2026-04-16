@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>เข้าสู่ระบบ - Tobacco Web</title>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="auth.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: 'Prompt', sans-serif; background: #f0f9ff; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+    .box { background: white; padding: 40px 30px; border-radius: 24px; width: 90%; max-width: 350px; box-shadow: 0 10px 25px rgba(59, 130, 246, 0.08); text-align: center; }
+    .logo { font-size: 1.5rem; font-weight: bold; color: #1e293b; margin-bottom: 20px; }
+    .logo span { color: #3b82f6; }
+    h2 { margin-top: 0; color: #334155; font-size: 1.2rem; margin-bottom: 20px; }
+    input { width: 100%; margin-bottom: 15px; padding: 12px 15px; border: 1px solid #e2e8f0; border-radius: 12px; font-family: 'Prompt', sans-serif; font-size: 0.95rem; outline: none; transition: 0.2s; }
+    input:focus { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59,130,246,0.1); }
+    button { width: 100%; padding: 12px; background: #3b82f6; color: white; border: none; border-radius: 12px; font-family: 'Prompt', sans-serif; font-size: 1rem; font-weight: 600; cursor: pointer; transition: 0.2s; margin-top: 10px; }
+    button:hover { background: #2563eb; }
+    p { margin-top: 20px; font-size: 0.9rem; color: #64748b; }
+    a { color: #3b82f6; text-decoration: none; font-weight: 600; }
+  </style>
+</head>
+<body>
+<div class="box">
+  <div class="logo">🌿 Tobacco <span>Web</span></div>
+  <h2>เข้าสู่ระบบบัญชีของคุณ</h2>
+  <input type="email" id="email" placeholder="อีเมล (Email)">
+  <input type="password" id="password" placeholder="รหัสผ่าน (Password)">
+  <button onclick="login()">เข้าสู่ระบบ</button>
+  <p>ยังไม่มีบัญชี? <a href="register.html">สมัครสมาชิก</a></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ประวัติ - Tobacco Web</title>
+
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .history-card {
+      background: white;
+      padding: 15px;
+      border-radius: 20px;
+      display: flex;
+      gap: 15px;
+      box-shadow: var(--shadow);
+      margin-bottom: 15px;
+      align-items: center;
+    }
+  </style>
+</head>
+
+<body onload="initPage()">
+
+<header class="app-header">
+  <div class="brand">
+    <i class="ph-fill ph-leaf"></i> Tobacco
+  </div>
+
+  <button onclick="logout()" style="background:#fff5f5;border:1px solid #ffe8e8;padding:8px 16px;border-radius:20px;color:#f43f5e;">
+    ออกจากระบบ
+  </button>
+</header>
+
+<main class="container">
+
+  <h2>ประวัติการวินิจฉัย</h2>
+
+  <div class="stat-box">
+    <p>สแกนทั้งหมด</p>
+    <h3 id="totalScan">0</h3>
+  </div>
+
+  <div id="historyAll">
+    <p>กำลังโหลด...</p>
+  </div>
+
+</main>
+
+<nav class="bottom-nav">
+
+  <div class="nav-item" onclick="go('index.html')">
+    <i class="ph ph-house"></i>
+    <span>หน้าหลัก</span>
+  </div>
+
+  <div class="nav-item active" onclick="go('history.html')">
+    <i class="ph-fill ph-clock-counter-clockwise"></i>
+    <span>ประวัติ</span>
+  </div>
+
+  <div class="nav-fab" onclick="go('camera.html')">
+    <i class="ph ph-scan"></i>
+  </div>
+
+  <div class="nav-item" onclick="go('scan.html')">
+    <i class="ph ph-book-bookmark"></i>
+    <span>สแกนโรค</span>
+  </div>
+
+  <div class="nav-item" onclick="go('guide.html')">
+    <i class="ph ph-book-open"></i>
+    <span>คู่มือ</span>
+  </div>
+
+</nav>
+
+<!-- SUPABASE -->
+ <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script>
+    const supabaseUrl = 'https://bdzquuqxtmrrmgdtwdjq.supabase.co';
+    const supabaseKey = 'sb_publishable_mqlTN61NRe9P67p33ES6ag_7yKtEXpx';
+    const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+  </script>
+
+<script src="script.js"></script>
+
+</body>
+</html>
