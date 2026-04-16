@@ -1,1 +1,1 @@
-# tobacco
+# Tobacco leaf disease scanning application.
